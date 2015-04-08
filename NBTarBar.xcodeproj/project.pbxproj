@@ -14,6 +14,7 @@
 		006338171AD4FDB7009FABEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 006338161AD4FDB7009FABEB /* Images.xcassets */; };
 		0063381A1AD4FDB7009FABEB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 006338181AD4FDB7009FABEB /* LaunchScreen.xib */; };
 		006338261AD4FDB7009FABEB /* NBTarBarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 006338251AD4FDB7009FABEB /* NBTarBarTests.m */; };
+		006338321AD4FDDD009FABEB /* NBTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 006338311AD4FDDD009FABEB /* NBTabBarItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		0063381F1AD4FDB7009FABEB /* NBTarBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NBTarBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		006338241AD4FDB7009FABEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		006338251AD4FDB7009FABEB /* NBTarBarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBTarBarTests.m; sourceTree = "<group>"; };
+		006338301AD4FDDD009FABEB /* NBTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBTabBarItem.h; sourceTree = "<group>"; };
+		006338311AD4FDDD009FABEB /* NBTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBTabBarItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,7 @@
 		006338081AD4FDB7009FABEB /* NBTarBar */ = {
 			isa = PBXGroup;
 			children = (
+				0063382F1AD4FDDD009FABEB /* NBTarBar */,
 				0063380D1AD4FDB7009FABEB /* AppDelegate.h */,
 				0063380E1AD4FDB7009FABEB /* AppDelegate.m */,
 				006338101AD4FDB7009FABEB /* ViewController.h */,
@@ -117,6 +121,15 @@
 				006338241AD4FDB7009FABEB /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0063382F1AD4FDDD009FABEB /* NBTarBar */ = {
+			isa = PBXGroup;
+			children = (
+				006338301AD4FDDD009FABEB /* NBTabBarItem.h */,
+				006338311AD4FDDD009FABEB /* NBTabBarItem.m */,
+			);
+			path = NBTarBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				006338321AD4FDDD009FABEB /* NBTabBarItem.m in Sources */,
 				006338121AD4FDB7009FABEB /* ViewController.m in Sources */,
 				0063380F1AD4FDB7009FABEB /* AppDelegate.m in Sources */,
 				0063380C1AD4FDB7009FABEB /* main.m in Sources */,
