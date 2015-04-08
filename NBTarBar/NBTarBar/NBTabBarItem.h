@@ -10,4 +10,9 @@
 
 @interface NBTabBarItem : UIButton
 
+@property (nonatomic,copy)  NSString *badgeValue;
+@property (nonatomic, retain) UIImage *image;
+@property (nonatomic, retain) UIImage *selectedImage;
+@property (nonatomic, retain) NSString *title;
+
 @end

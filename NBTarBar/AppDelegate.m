@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+#import "TabViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -16,7 +18,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    [UITabBar appearance].tintColor = [UIColor redColor];
+    TabViewController *tab = [TabViewController new];
+    self.window.rootViewController = tab;
+    
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
