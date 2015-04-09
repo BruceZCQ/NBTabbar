@@ -73,6 +73,7 @@
             item.badgeValue = @"";
         }else if(idx == 2){
             item.badgeValue = @"21";
+            item.badgeColor = [UIColor yellowColor];
         }
         idx++;
     }
