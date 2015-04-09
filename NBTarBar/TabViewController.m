@@ -28,22 +28,29 @@
     ViewController *aVc = [ViewController new];
     UINavigationController *aNav = [[UINavigationController alloc] initWithRootViewController:aVc];
     aVc.title = @"aVc";
-    aNav.title = @"adsa";
+    aNav.title = @"AVC";
     aNav.tabBarItem.image = [UIImage imageNamed:@"setting"];
     aNav.tabBarItem.selectedImage = [UIImage imageNamed:@"setting_selected"];
+    
     BViewController *bVc = [BViewController new];
+    UINavigationController *bNav = [[UINavigationController alloc] initWithRootViewController:bVc];
     bVc.title = @"bVc";
-    bVc.tabBarItem.image = [UIImage imageNamed:@"trash"];
-    bVc.tabBarItem.selectedImage = [UIImage imageNamed:@"trash_selected"];
+    bNav.title = @"BVC";
+    bNav.tabBarItem.image = [UIImage imageNamed:@"trash"];
+    bNav.tabBarItem.selectedImage = [UIImage imageNamed:@"trash_selected"];
+    
     BViewController *cVc = [BViewController new];
-    cVc.title = @"cVc";
-    cVc.tabBarItem.image = [UIImage imageNamed:@"trash"];
-    cVc.tabBarItem.selectedImage = [UIImage imageNamed:@"trash_selected"];
+    UINavigationController *cNav = [[UINavigationController alloc] initWithRootViewController:cVc];
+    cVc.title = @"CVC";
+    cNav.tabBarItem.image = [UIImage imageNamed:@"trash"];
+    cNav.tabBarItem.selectedImage = [UIImage imageNamed:@"trash_selected"];
+    
     BViewController *dVc = [BViewController new];
-    dVc.title = @"cVc";
-    dVc.tabBarItem.image = [UIImage imageNamed:@"trash"];
-    dVc.tabBarItem.selectedImage = [UIImage imageNamed:@"trash_selected"];
-    self.viewControllers = @[aNav,bVc,cVc,dVc];
+    UINavigationController *dNav = [[UINavigationController alloc] initWithRootViewController:cVc];
+    dVc.title = @"DVC";
+    dNav.tabBarItem.image = [UIImage imageNamed:@"trash"];
+    dNav.tabBarItem.selectedImage = [UIImage imageNamed:@"trash_selected"];
+    self.viewControllers = @[aNav,bNav,cNav,dNav];
 }
 
 - (void)setViewControllers:(NSArray *)viewControllers
@@ -52,23 +59,35 @@
     
     
     NSMutableArray *tabBarItems = [NSMutableArray array];
+    NSUInteger idx = 0;
     for (UIViewController *vc in viewControllers) {
         NBTabBarItem *item = [NBTabBarItem new];
         item.image = vc.tabBarItem.image;
         item.selectedImage = vc.tabBarItem.selectedImage;
-//        item.title = vc.title;
+        item.title = vc.title;
         [tabBarItems addObject:item];
+        vc.tabBarItem.image = nil;
+        vc.tabBarItem.selectedImage = nil;
+        vc.title = nil;
+        if (idx == 0) {
+            item.badgeValue = @"";
+        }else if(idx == 2){
+            item.badgeValue = @"21";
+        }
+        idx++;
     }
     
-    _tabbar = [[NBTabBar alloc] initWithUITabbarController:self items:[NSArray arrayWithArray:tabBarItems]];
-//    _tabbar.backgroundColor = [UIColor whiteColor];
+    _tabbar = [[NBTabBar alloc] initWithUITabbarController:self];
+    _tabbar.items = [NSArray arrayWithArray:tabBarItems];
+    _tabbar.backgroundColor = [UIColor clearColor];
     _tabbar.delegate = self;
 }
 
 #pragma mark - NBTabBarDelegate
 
-- (void)didSelectedItemAtIndex:(NSUInteger)idx tabbar:(NBTabBar *)tabar
+- (void)didSelectedItemAtIndex:(NSUInteger)idx item:(NBTabBarItem *)item tabbar:(NBTabBar *)tabar
 {
+    
 }
 
 @end

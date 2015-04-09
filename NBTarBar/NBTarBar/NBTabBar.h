@@ -9,18 +9,23 @@
 #import <UIKit/UIKit.h>
 
 @class NBTabBar;
+@class NBTabBarItem;
 
 @protocol NBTabBarDelegate <NSObject>
 
-- (void)didSelectedItemAtIndex:(NSUInteger)idx tabbar:(NBTabBar *)tabar;
+- (void)didSelectedItemAtIndex:(NSUInteger)idx
+                          item:(NBTabBarItem *)item
+                        tabbar:(NBTabBar *)tabar;
 
 @end
 
 @interface NBTabBar : UIView
 
 @property (nonatomic, weak) id<NBTabBarDelegate> delegate;
+@property (nonatomic, retain) NSArray *items;
+@property (nonatomic, retain) UIColor *selectedColor;
+@property (nonatomic, retain) UIColor *color;
 
-- (id)initWithUITabbarController:(UITabBarController *)tabbarController
-                           items:(NSArray *)items;
+- (id)initWithUITabbarController:(UITabBarController *)tabbarController;
 
 @end

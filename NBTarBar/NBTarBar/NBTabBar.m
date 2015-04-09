@@ -9,7 +9,7 @@
 #import "NBTabBar.h"
 #import "NBTabBarItem.h"
 
-@interface NBTabBar()
+@interface NBTabBar()<NBTabBarItemDelegate>
 {
     NSArray *_items_;
     UITabBarController *_tabBarController;
@@ -19,14 +19,12 @@
 @implementation NBTabBar
 
 - (id)initWithUITabbarController:(UITabBarController *)tabbarController
-                           items:(NSArray *)items
 {
     if (self = [super init]) {
         self.frame = tabbarController.tabBar.bounds;
         [tabbarController.tabBar addSubview:self];
         
         _tabBarController = tabbarController;
-        [self setItems:items];
     }
     return self;
 }
@@ -47,8 +45,8 @@
         }
         item.frame = CGRectMake(itemWidth*idx, yOffset/2, itemWidth, itemHeight);
         [self addSubview:item];
-        [item addTarget:self action:@selector(onSelectedItem:) forControlEvents:UIControlEventTouchUpInside];
         item.tag = idx;
+        item.delegate = self;
         idx++;
     }
 }
@@ -58,20 +56,41 @@
     return _items_;
 }
 
-- (void)onSelectedItem:(NBTabBarItem *)selectedItem
+- (void)setSelectedColor:(UIColor *)selectedColor
 {
-    _tabBarController.selectedIndex = selectedItem.tag;
-    
     for (NBTabBarItem *item in _items_) {
-        if ([selectedItem isEqual:item]) {
-            item.selected = YES;
+        item.selectedColor = selectedColor;
+    }
+}
+
+- (void)setColor:(UIColor *)color
+{
+    for (NBTabBarItem *item in _items_) {
+        item.color = color;
+    }
+}
+
+#pragma mark - NBTabBarItemDelegate
+
+- (void)didSelectedItem:(NBTabBarItem *)item
+{
+    //selected
+    if (_tabBarController.selectedIndex == item.tag) {
+        return;
+    }
+    
+    _tabBarController.selectedIndex = item.tag;
+    
+    for (NBTabBarItem *i in _items_) {
+        if ([i isEqual:item]) {
+            i.selected = YES;
         }else{
-            item.selected = NO;
+            i.selected = NO;
         }
     }
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectedItemAtIndex:tabbar:)]) {
-        [self.delegate didSelectedItemAtIndex:selectedItem.tag tabbar:self];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectedItemAtIndex:item:tabbar:)]) {
+        [self.delegate didSelectedItemAtIndex:item.tag item:item tabbar:self];
     }
 }
 
